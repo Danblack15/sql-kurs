@@ -5,6 +5,8 @@ const userRouter = Router();
 
 
 userRouter.post('/user', userController.createUser);
+userRouter.post('/login', userController.loginUser);
+userRouter.post('/user/booking', userController.userBooking);
 userRouter.get('/user', userController.getUsers);
 userRouter.get('/user/:id', userController.getOneUser);
 userRouter.put('/user', userController.updateUser);

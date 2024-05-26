@@ -41,6 +41,27 @@ class userController {
 
         res.json(user.rows[0]);
     }
+
+    async loginUser(req, res) {
+        const { user_name } = req.body;
+
+        const user = await db.query('SELECT * FROM person WHERE name = $1', [user_name]);
+
+        res.json(user.rows[0]);
+    }
+
+    async userBooking(req, res) {
+        const { user_id } = req.body;
+
+        // const bookingList = await db.query('SELECT * FROM booking WHERE user_id = $1', [user_id]);
+        const bookingList = await db.query(`
+            SELECT *, cinema.title AS cinema_title FROM booking 
+                JOIN cinema ON user_id = $1 AND booking.cinema_id = cinema.id
+                JOIN film_cinema ON booking.film_cinema_id = film_cinema.id
+                ORDER BY booking.time`, [user_id]);
+
+        res.json(bookingList.rows);
+    }
 }
 
 export default new userController();

@@ -5,6 +5,6 @@ const hallRouter = Router();
 
 
 hallRouter.post('/hall', hallController.createHall);
-hallRouter.get('/hall/:id', hallController.getHall);
+hallRouter.post('/oneHall', hallController.getHall);
 
 export { hallRouter };

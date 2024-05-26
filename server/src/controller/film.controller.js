@@ -29,8 +29,8 @@ class filmController {
     async getScheduleOfFilm(req, res) {
         const { film_id, cinema_id } = req.body;
 
-        const times = await db.query('SELECT time FROM film_cinema WHERE film_id = $1 AND cinema_id = $2', [film_id, cinema_id]);
-
+        const times = await db.query('SELECT id, time, hall_id FROM film_cinema WHERE film_id = $1 AND cinema_id = $2', [film_id, cinema_id]);
+        
         res.json(times.rows);
     }
 
