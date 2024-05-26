@@ -22,8 +22,6 @@ class hallController {
             [hall_id, cinema_film_id]
         ); // Все заказы, связанные с id зала и фильмом кинотаетра (filM_CINEMA_ID) и статусом 'current'
 
-        console.log(cinema_film_id, bookingOfHall);
-
         const hall = await db.query(`SELECT * FROM hall WHERE id = $1`, [hall_id]); // Зал
 
         const hallData = {
